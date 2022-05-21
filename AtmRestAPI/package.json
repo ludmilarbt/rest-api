@@ -1,39 +1,61 @@
 {
-  "name": "atmrestapi",
-  "version": "1.0.0",
-  "description": "ATM service",
+  "name": "atm-rest-appi",
+  "version": "0.0.3",
+  "description": "ATM machine Rest API service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node --unhandled-rejections=strict ./dist/app.js",
+    "debug": "export DEBUG=* && npm start",
+    "test": "mocha -r ts-node/register 'test/**/*.test.ts' --unhandled-rejections=strict",
+    "test-debug": "export DEBUG=* && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ludmilarbt/rest-api.git"
   },
   "keywords": [
     "REST",
     "API",
+    "ExpressJS",
     "NodeJS",
-    "ATM"
+    "Toptal"
   ],
-  "author": "LArbit",
-  "license": "ISC",
+  "author": "Ludmila Arbit",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ludmilarbt/atm-rest-api/issues"
+    "url": "https://github.com/ludmilarbt/rest-api/issues"
   },
+  "homepage": "https://github.com/ludmilarbt/rest-api#readme",
   "dependencies": {
+    "argon2": "^0.27.0",
     "cors": "^2.8.5",
-    "debug": "^4.3.4",
-    "express": "^4.18.1",
-    "express-winston": "^4.2.0",
-    "winston": "^3.7.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ludmilarbt/atm-rest-api.git"
+    "debug": "^4.2.0",
+
+    "express": "^4.17.1",
+    "express-validator": "^6.9.2",
+    "express-winston": "^4.1.0",
+
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "~5.*.*",
+    "shortid": "^2.2.16",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/debug": "^4.1.7",
-    "@types/express": "^4.17.13",
-    "source-map-support": "^0.5.21",
-    "tslint": "^6.1.3",
-    "typescript": "^4.6.4"
+    "@types/argon2": "^0.15.0",
+    "@types/chai": "^4.2.14",
+    "@types/cors": "^2.8.7",
+    "@types/debug": "^4.1.5",
+    "@types/express": "^4.17.11",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mocha": "^8.2.0",
+    "@types/shortid": "0.0.29",
+    "@types/supertest": "^2.0.10",
+    "chai": "^4.3.3",
+    "mocha": "^8.3.0",
+    "source-map-support": "^0.5.16",
+    "supertest": "^6.1.3",
+    "ts-node": "^9.1.1",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
   }
 }
