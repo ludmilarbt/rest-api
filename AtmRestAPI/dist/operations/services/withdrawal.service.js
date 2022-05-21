@@ -21,6 +21,13 @@ class WithdrawalService {
             return atmCashResponse;
         });
     }
+    listInventoryItems() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const inventory = yield withdrawal_dao_1.default.getInventory();
+            //if response is valid send approval
+            return inventory;
+        });
+    }
 }
 exports.default = new WithdrawalService();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2l0aGRyYXdhbC5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vb3BlcmF0aW9ucy9zZXJ2aWNlcy93aXRoZHJhd2FsLnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7QUFDQSw0RUFBbUQ7QUFJbkQsTUFBTSxpQkFBaUI7SUFDYixhQUFhLENBQUMsTUFBYzs7WUFDOUIsTUFBTSxlQUFlLEdBQUUsTUFBTSx3QkFBYSxDQUFDLGFBQWEsQ0FBQyxNQUFNLENBQUMsQ0FBQztZQUVqRSxvQ0FBb0M7WUFDcEMsT0FBTyxlQUFlLENBQUM7UUFDM0IsQ0FBQztLQUFBO0NBRUo7QUFFRCxrQkFBZSxJQUFJLGlCQUFpQixFQUFFLENBQUEifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2l0aGRyYXdhbC5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vb3BlcmF0aW9ucy9zZXJ2aWNlcy93aXRoZHJhd2FsLnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7QUFDQSw0RUFBbUQ7QUFJbkQsTUFBTSxpQkFBaUI7SUFDYixhQUFhLENBQUMsTUFBYzs7WUFDOUIsTUFBTSxlQUFlLEdBQUUsTUFBTSx3QkFBYSxDQUFDLGFBQWEsQ0FBQyxNQUFNLENBQUMsQ0FBQztZQUVqRSxvQ0FBb0M7WUFDcEMsT0FBTyxlQUFlLENBQUM7UUFDM0IsQ0FBQztLQUFBO0lBRUssa0JBQWtCOztZQUNwQixNQUFNLFNBQVMsR0FBRSxNQUFNLHdCQUFhLENBQUMsWUFBWSxFQUFFLENBQUM7WUFFcEQsb0NBQW9DO1lBQ3BDLE9BQU8sU0FBUyxDQUFDO1FBQ3JCLENBQUM7S0FBQTtDQUlKO0FBRUQsa0JBQWUsSUFBSSxpQkFBaUIsRUFBRSxDQUFBIn0=

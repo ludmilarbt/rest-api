@@ -11,6 +11,15 @@ class WithdrawalService {
         return atmCashResponse;
     }
 
+    async listInventoryItems() {
+        const inventory= await withdrawalDao.getInventory();
+
+        //if response is valid send approval
+        return inventory;
+    }
+
+    
+
 }
 
 export default new WithdrawalService()

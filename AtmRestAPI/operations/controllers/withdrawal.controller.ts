@@ -9,6 +9,15 @@ class WithdrawalController {
         
         res.status(200).send(approval);
     }
+
+    async listInventoryItems(req: express.Request, res: express.Response) {
+        const approval=await withdrawalService.listInventoryItems();
+        
+        res.status(200).send(approval);
+    }
+
+
+    
 }
 
 export default new WithdrawalController()

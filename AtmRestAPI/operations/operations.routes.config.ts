@@ -21,6 +21,13 @@ export class OperationsRoutes extends CommonRoutesConfig {
         })
 
         this.app
+            .route(`/inventoryItems`)
+            .post(
+                withdrawalController.listInventoryItems);
+
+
+
+        this.app
             .route(`/withdrawal`)
             .post(
                 body('amount').exists().withMessage('Amount parameter is missing in request'),
