@@ -7,6 +7,7 @@ const log: debug.IDebugger = debug('app:users-dao');
 
 class WithdrawalDao {
 
+    
     Schema = mongooseService.getMongoose().Schema;
 
     inventorySchema = new this.Schema({
@@ -18,21 +19,20 @@ class WithdrawalDao {
     Inventory = mongooseService.getMongoose().model('Inventory', this.inventorySchema);
 
     constructor() {
-        log('Created new instance of UsersDao');
-
-        /*const newItem = new this.Inventory({
+        log('Created new instance of WithdrawalDao');
+/*
+        const newItem = new this.Inventory({
             type: "Bill",
             value: 100,
             amount: 2
 
         });
-        newItem.save();*/
+        newItem.save();
+        */
     }
 
-    async getInventory(limit = 25, page = 0) {
+    async getInventory() {
         return this.Inventory.find()
-            .limit(limit)
-            .skip(limit * page)
             .exec();
     }
 
