@@ -11,7 +11,7 @@ class WithdrawalController {
     }
 
     async listInventoryItems(req: express.Request, res: express.Response) {
-        const approval=await withdrawalService.listInventoryItems();
+        const approval=await withdrawalService.listInventoryItems(req.body.amount);
         
         res.status(200).send(approval);
     }

@@ -3,6 +3,7 @@ import withdrawalDao from '../daos/withdrawal.dao';
 import {AtmCashResponse} from '../../inventory/dto/atm.cash.response'
 import {inventoryBalance} from '../../inventory/dto/inventory.cassetes';
 import {InventoryItem} from '../../inventory/dto/inventory.item';
+import { CashGroup } from '../../inventory/dto/cash.group';
 
 class WithdrawalService {
     async withdrawMoney(amount: number) {
@@ -14,7 +15,7 @@ class WithdrawalService {
         return atmCashResponse;
     }
 
-    async listInventoryItems() {
+    async listInventoryItems(amount: number) {
         console.log('inventoryBalance' + JSON.stringify(inventoryBalance));
 
         const inventoryBalanceExt=new Array<InventoryItem>();
@@ -24,11 +25,12 @@ class WithdrawalService {
         newItem.value= 2000;
         newItem.amount= 2;
         newItem.sum= 4000;
+        inventoryBalanceExt.push( newItem);
         newItem=new InventoryItem() 
         newItem.type= "Bill";
         newItem.value= 100;
-        newItem.amount= 1;
-        newItem.sum= 200;
+        newItem.amount= 10;
+        newItem.sum= 1000;
         inventoryBalanceExt.push( newItem);
         newItem=new InventoryItem() 
         newItem.type= "Bill";
@@ -38,37 +40,54 @@ class WithdrawalService {
         inventoryBalanceExt.push( newItem);
 
 
-        inventoryBalanceExt.push( newItem);
+        const  inventoryBalanceExtBills = inventoryBalanceExt.filter(item=> {
+            if(item.type == 'Bill')
+            {
+                return true;
+            }
+        })
 
+        let calculatedCash = new AtmCashResponse();
+        this.populateCashGroups(amount, inventoryBalanceExt, 'Bill', calculatedCash.billsAmount );
+        //this.calculateCash(3015, inventoryBalanceExt, 'Coin', calculatedCash.coinsAmount );
 
-
-        this.countCurrency(3015, inventoryBalanceExt);
-        
         //const inventory= await withdrawalDao.getInventory();
 
         //if response is valid send approval
         return inventoryBalance;
     }
 
-    countCurrency(amount: number, inventoryBalanceExt: Array<InventoryItem>) {
-        let notes = [2000, 500, 200, 100,50,20,5];
-        let noteCounter = [0, 0, 0, 0,0,0,0];
+
+
+    populateCashGroups(amount: number, inventoryBalanceExt: Array<InventoryItem>, type: string,groupAmount: Array<CashGroup>) {
+        const  inventoryBalanceByType = inventoryBalanceExt.filter(item=> {
+            if(item.type == type)
+            {
+                return true;
+            }
+        })
+
+        if (inventoryBalanceByType.length==0) {
+            return;
+        }
       
-        for (var i = 0; i < 3; i++) {
-          if (amount >= inventoryBalanceExt[i].sum) 
-          {
-            noteCounter[i] = Math.floor(amount / inventoryBalanceExt[i].value);
-            amount = amount - noteCounter[i] * inventoryBalanceExt[i].amount;
-          }
-        }
-        // Print notes denomination
-        console.log("Denomination Count:");
-        for (var j = 0; j < 3; j++) {
-          if (noteCounter[j] !== 0) {
-            console.log(inventoryBalanceExt[j].value + " : " + noteCounter[j]);
-          }
-        }
-      }
+        inventoryBalanceByType.forEach(item => {
+            if (amount >= item.value) 
+            {
+                const casheGroup=new CashGroup();
+                casheGroup.groupValue=item.value;
+                const optimalCount = Math.floor(amount / item.value);
+                casheGroup.groupCount =Math.min(optimalCount, item.amount);
+                groupAmount.push(casheGroup);
+                console.log(casheGroup);
+                amount=amount-casheGroup.groupValue*casheGroup.groupCount;
+            }
+        });
+
+        console.log(`remaining amount:${amount}`);
+    }
+
+    
 
     
 

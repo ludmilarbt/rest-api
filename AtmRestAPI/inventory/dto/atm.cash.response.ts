@@ -1,4 +1,6 @@
+import { CashGroup } from "./cash.group";
+
 export class AtmCashResponse {
-    billsAmount: number = 0;
-    coinsAmount: number = 0;
+    billsAmount: Array<CashGroup>=new Array<CashGroup>();
+    coinsAmount: Array<CashGroup>=new Array<CashGroup>();
 }
