@@ -25,20 +25,24 @@ class OperationsMiddleware {
         }
     }
 
-    /*
+    
     async validateWithdrawalResponse(req: express.Request, res: express.Response, next: express.NextFunction) {
-        const withdrowalResponse = res.result as AtmCashResponse;
+        //let responseCotroller= res.locals.result;
+        //s.status(409).send(res);
+        
+        const withdrowalResponse = res.locals.result as AtmCashResponse;
         if(withdrowalResponse.maxAvailableAmount === undefined) {
-            res.status(200).send({
-                res
-            });
+            res.status(200).send(
+                res.locals.result
+            );
         } else {
             res.status(409).send({
                 error: `Requested amount conflict, maximun available amount is: ${ withdrowalResponse.maxAvailableAmount}`
             });
         }
+        
     }
-    */
+    
 }
 
 export default new OperationsMiddleware();

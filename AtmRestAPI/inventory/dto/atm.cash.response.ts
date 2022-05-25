@@ -45,7 +45,8 @@ const map1 = new Map([
             result : {
                 "bills": [billsJson],
                 "coins": [coinsJson] 
-            }
+            },
+            
         };
 
         return result;

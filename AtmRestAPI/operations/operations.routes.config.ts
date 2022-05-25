@@ -22,8 +22,8 @@ export class OperationsRoutes extends CommonRoutesConfig {
                 body('amount').isDecimal().withMessage('Amount parameter should be decimal'),
                bodyValidationMiddleware.verifyBodyFieldsErrors,
                 operationsMiddleware.validateWithdrawalAmount,
-                withdrawalController.withdrawMoney);
-                //operationsMiddleware.validateWithdrawalResponse);
+                withdrawalController.withdrawMoney,
+                operationsMiddleware.validateWithdrawalResponse);
 
             return this.app;
     }
