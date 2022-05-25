@@ -1,14 +1,12 @@
 import express from 'express';
 import mongooseService from '../../common/services/mongoose.service';
-import {AtmCashResponse} from '../../inventory/dto/atm.cash.response';
-import {InventoryItem} from '../../inventory/dto/inventory.item';
-import { CashGroup } from '../../inventory/dto/cash.group';
+import {InventoryItem} from '../dto/inventory.item';
 import debug from 'debug';
 
 
 const log: debug.IDebugger = debug('app:users-dao');
 
-class WithdrawalDao {
+class InventoryRepo {
 
     
     Schema = mongooseService.getMongoose().Schema;
@@ -22,39 +20,31 @@ class WithdrawalDao {
     Inventory = mongooseService.getMongoose().model('Inventory', this.inventorySchema);
 
     constructor() {
-        log('Created new instance of WithdrawalDao');
-
-       /* 
-       const newItem = new this.Inventory({
-            type: "Bill",
-            value: 100,
-            amount: 2
-
-        });
-       
-        newItem.save();
-
-         */
-        
     }
 
     async getInventory() {
 
         //return this.createMockInventory();
 
-        //db.inventories.aggregate([{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} }])
-            let inventory = this.Inventory.aggregate([{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} }])
+        let inventory = this.Inventory 
+        .aggregate([{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} },{ $sort: { "type": -1, "value": -1} }])
         .exec();
-        
-        console.log(JSON.stringify(inventory));
 
+                            
         return inventory;
            
     }
 
-    async  withdrawMoney(amount: number) {
-        return new AtmCashResponse() ;
+    async pushInventoryItem(type: string, value:number, amount: number) {
+        const newItem = new this.Inventory({
+            type: type,
+            value: value,
+            amount:amount
+
+        });
+        newItem.save();
     }
+
 
     createMockInventory() {
         const inventoryBalanceExt=new Array<InventoryItem>();
@@ -97,4 +87,4 @@ class WithdrawalDao {
 
 }
 
-export default new WithdrawalDao()
+export default new InventoryRepo()

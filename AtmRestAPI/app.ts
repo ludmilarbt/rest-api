@@ -6,6 +6,7 @@ import cors from 'cors';
 import { CommonRoutesConfig } from './common/common.routes.config';
 //import { UsersRoutes } from './users/users.routes.config';
 import {OperationsRoutes} from './operations/operations.routes.config';
+import { InventoryRoutes } from './inventory/inventory.routes.config';
 
 import debug from 'debug';
 
@@ -39,6 +40,7 @@ app.use(expressWinston.logger(loggerOptions));
 
 //routes.push(new UsersRoutes(app));
 routes.push(new OperationsRoutes(app));
+routes.push(new InventoryRoutes(app));
 
 const runningMessage = `Server running at http://localhost:${port}`;
 app.get('/', (req: express.Request, res: express.Response) => {

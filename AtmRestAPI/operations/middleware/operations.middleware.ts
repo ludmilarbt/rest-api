@@ -1,5 +1,6 @@
 import express from 'express';
 import debug from 'debug';
+import { AtmCashResponse } from '../../inventory/dto/atm.cash.response';
 
 const log: debug.IDebugger = debug('app:withdrawal-controller');
 
@@ -23,6 +24,21 @@ class OperationsMiddleware {
             });
         }
     }
+
+    /*
+    async validateWithdrawalResponse(req: express.Request, res: express.Response, next: express.NextFunction) {
+        const withdrowalResponse = res.result as AtmCashResponse;
+        if(withdrowalResponse.maxAvailableAmount === undefined) {
+            res.status(200).send({
+                res
+            });
+        } else {
+            res.status(409).send({
+                error: `Requested amount conflict, maximun available amount is: ${ withdrowalResponse.maxAvailableAmount}`
+            });
+        }
+    }
+    */
 }
 
 export default new OperationsMiddleware();

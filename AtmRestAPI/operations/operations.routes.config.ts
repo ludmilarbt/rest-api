@@ -15,18 +15,6 @@ export class OperationsRoutes extends CommonRoutesConfig {
     configureRoutes(): express.Application {
 
 
-        this.app.route(`/withdrawal1`)
-        .get((req: express.Request, res: express.Response) => {
-            res.status(200).send(`withdrawal1`);
-        })
-
-        this.app
-            .route(`/inventoryItems`)
-            .post(
-                withdrawalController.listInventoryItems);
-
-
-
         this.app
             .route(`/withdrawal`)
             .post(
@@ -35,6 +23,7 @@ export class OperationsRoutes extends CommonRoutesConfig {
                bodyValidationMiddleware.verifyBodyFieldsErrors,
                 operationsMiddleware.validateWithdrawalAmount,
                 withdrawalController.withdrawMoney);
+                //operationsMiddleware.validateWithdrawalResponse);
 
             return this.app;
     }
