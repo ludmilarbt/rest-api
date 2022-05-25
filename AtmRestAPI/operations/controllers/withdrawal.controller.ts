@@ -5,9 +5,10 @@ import withdrawalService from '../services/withdrawal.service';
 class WithdrawalController {
 
    async withdrawMoney(req: express.Request, res: express.Response) {
-        const approval=await withdrawalService.withdrawMoney(req.body.amount);
+       
+        const response=await withdrawalService.withdrawMoney(req.body.amount);
         
-        res.status(200).send(approval);
+        res.status(200).send(response);
     }
 
     async listInventoryItems(req: express.Request, res: express.Response) {

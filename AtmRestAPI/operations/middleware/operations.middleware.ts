@@ -6,8 +6,12 @@ const log: debug.IDebugger = debug('app:withdrawal-controller');
 class OperationsMiddleware {
     async validateWithdrawalAmount(req: express.Request, res: express.Response, next: express.NextFunction) {
         if(req.body && req.body.amount) {
-            if(req.body.amount<2000) {
+            if(req.body.amount<2000 && req.body.amount>0) {
                 next();
+            } else if (req.body.amount<0) {
+                res.status(400).send({
+                    error: 'Invalid amount request parameter: value should be positive number'
+                });
             } else {
                 res.status(400).send({
                     error: 'Invalid amount request parameter: value should not exceed 2000'
