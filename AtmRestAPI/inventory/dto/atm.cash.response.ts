@@ -41,13 +41,18 @@ const map1 = new Map([
         console.log(`billsJson ${JSON.stringify (billsJson)}`);
         let coinsJson= (Object.fromEntries(this.coins));
 
-        let result= {
-            result : {
+        let result= {};
+
+        if (this.maxAvailableAmount!==undefined) {
+            result = {
+                "maxAvailableAmount": this.maxAvailableAmount
+            }
+        } else {
+            result = {
                 "bills": [billsJson],
                 "coins": [coinsJson] 
-            },
-            
-        };
+            }
+        }
 
         return result;
     }

@@ -25,6 +25,11 @@ export class OperationsRoutes extends CommonRoutesConfig {
                 withdrawalController.withdrawMoney,
                 operationsMiddleware.validateWithdrawalResponse);
 
+
+        this.app
+        .route(`/test`)
+        .get((req:express.Request, res:express.Response, next: express.NextFunction) =>  res.status(200).send('response:Test passed'));
+
             return this.app;
     }
 
