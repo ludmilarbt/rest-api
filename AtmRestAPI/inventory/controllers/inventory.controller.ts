@@ -17,6 +17,12 @@ class InventoryController {
         res.status(200).send(approval);
     }
 
+    async clean(req: express.Request, res: express.Response) {
+        const approval=await inventoryService.clean();
+        
+        res.status(200).send(approval);
+    }
+
 
     
 }

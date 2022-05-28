@@ -9,11 +9,6 @@ class WithdrawalController {
         const response=await withdrawalService.withdrawMoney(req.body.amount);
         res.locals.result = response;
         next();
-
-        //res.result=response;
-        //next(req,res,next);
-        //return response;
-        //res.status(200).send(response);
     }
 
 

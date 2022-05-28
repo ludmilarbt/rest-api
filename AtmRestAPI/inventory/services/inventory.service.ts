@@ -1,11 +1,17 @@
 import express from 'express';
 import inventoryRepo from '../repos/inventory.repo';
-import {AtmCashResponse} from '../../inventory/dto/atm.cash.response'
+import {AtmWithdrawalModel} from '../../common/model/atm.withdrawal.model'
 import {inventoryBalance} from '../../inventory/dto/inventory.cassetes';
-import {InventoryItem} from '../../inventory/dto/inventory.item';
+import {InventoryItem} from '../../common/model/inventory.item';
 
 
 class InventoryService {
+    async clean() {
+        
+        const inventoryBalance= await inventoryRepo.cleanInventory();
+
+        return inventoryBalance;
+    }
     
 
     async getInventory() {

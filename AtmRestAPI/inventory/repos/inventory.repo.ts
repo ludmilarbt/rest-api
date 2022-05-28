@@ -1,6 +1,6 @@
 import express from 'express';
 import mongooseService from '../../common/services/mongoose.service';
-import {InventoryItem} from '../dto/inventory.item';
+import {InventoryItem} from '../../common/model/inventory.item';
 import debug from 'debug';
 
 
@@ -17,7 +17,21 @@ class InventoryRepo {
         amount: Number,
     });
 
+    /*
+    const machineInventory = new this.Schema({
+        //id: {type: Number},
+        machineID: {
+           type: Number
+        },
+        items: {
+           type: Array<InventoryItem>
+        }
+     });
+*/
     Inventory = mongooseService.getMongoose().model('Inventory', this.inventorySchema);
+
+    
+
 
     constructor() {
     }
@@ -25,11 +39,25 @@ class InventoryRepo {
     async getInventory() {
 
         //return this.createMockInventory();
+        //{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} },
+        let inventory = this.Inventory 
+        .aggregate([ {$sort: { "type": -1, "value": -1, "amount": 1} }])
+        .exec();
+                            
+        return inventory;
+           
+    }
+
+    async saveInventory(inventory: InventoryItem[]) {
+        inventory.forEach(item => {
+            this.pushInventoryItem(item.type, item.value, item.amount);
+        });
+    }
+
+    async cleanInventory() {
 
         let inventory = this.Inventory 
-        .aggregate([{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} },{ $sort: { "type": -1, "value": -1} }])
-        .exec();
-
+        .remove({});
                             
         return inventory;
            
@@ -53,32 +81,27 @@ class InventoryRepo {
         newItem.type= "Bill";
         newItem.value= 2000;
         newItem.amount= 2;
-        newItem.sum= 4000;
         inventoryBalanceExt.push( newItem);
         newItem=new InventoryItem() 
         newItem.type= "Bill";
         newItem.value= 100;
         newItem.amount= 10;
-        newItem.sum= 1000;
         inventoryBalanceExt.push( newItem);
         newItem=new InventoryItem() 
         newItem.type= "Bill";
         newItem.value= 5;
         newItem.amount= 3;
-        newItem.sum= 15;
         inventoryBalanceExt.push( newItem);
 
         newItem=new InventoryItem() 
         newItem.type= "Coin";
         newItem.value= 0.5;
         newItem.amount= 50;
-        newItem.sum= 50;
         inventoryBalanceExt.push( newItem);
         newItem=new InventoryItem() 
         newItem.type= "Coin";
         newItem.value= 0.1;
         newItem.amount= 3;
-        newItem.sum= 100;
         inventoryBalanceExt.push( newItem);
 
         return inventoryBalanceExt;

@@ -1,6 +1,7 @@
 import express from 'express';
 import debug from 'debug';
-import { AtmCashResponse } from '../../inventory/dto/atm.cash.response';
+import { AtmWithdrawalModel } from '../../common/model/atm.withdrawal.model';
+import { OperationCanceledException } from 'typescript';
 
 const log: debug.IDebugger = debug('app:withdrawal-controller');
 
@@ -24,26 +25,28 @@ class OperationsMiddleware {
             });
         }
     }
-
     
-    async validateWithdrawalResponse(req: express.Request, res: express.Response, next: express.NextFunction) {
-        //let responseCotroller= res.locals.result;
-        //s.status(409).send(res);
+    async validateWithdrawalResponseErrors(req: express.Request, res: express.Response, next: express.NextFunction) {
+       
+        const withdrowalResponse = res.locals.result as AtmWithdrawalModel;
         
-        const withdrowalResponse = res.locals.result as AtmCashResponse;
-        if(withdrowalResponse.maxAvailableAmount === undefined) {
-            res.status(200).send(
-                res.locals.result
-            );
+        if(withdrowalResponse.errorsMessage !== undefined) {
+            if(withdrowalResponse.errorsMessage.indexOf('amount conflict')>0) {
+                res.status(409).send({
+                    error: `${ withdrowalResponse.errorsMessage}`
+                });
+            } else {
+                next(new Error(withdrowalResponse.errorsMessage));
+            }
         } else {
-            res.status(409).send({
-                error: `Requested amount conflict, maximun available amount is: ${ withdrowalResponse.maxAvailableAmount}`
-            });
+            res.status(200).send(withdrowalResponse);
         }
+            
+    }
         
     }
     
-}
+
 
 export default new OperationsMiddleware();
 

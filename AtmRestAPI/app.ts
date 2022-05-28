@@ -10,6 +10,10 @@ import { InventoryRoutes } from './inventory/inventory.routes.config';
 
 import debug from 'debug';
 
+import "reflect-metadata";
+import container from './common/config/container.di';
+import TYPES, { Warrior } from './common/config/test.di';
+
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -41,6 +45,9 @@ app.use(expressWinston.logger(loggerOptions));
 //routes.push(new UsersRoutes(app));
 routes.push(new OperationsRoutes(app));
 routes.push(new InventoryRoutes(app));
+
+let Warrior = container.get<Warrior>(TYPES.Warrior);
+console.log(Warrior.fight());
 
 const runningMessage = `Server running at http://localhost:${port}`;
 app.get('/', (req: express.Request, res: express.Response) => {

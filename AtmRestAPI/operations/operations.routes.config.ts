@@ -23,7 +23,8 @@ export class OperationsRoutes extends CommonRoutesConfig {
                bodyValidationMiddleware.verifyBodyFieldsErrors,
                 operationsMiddleware.validateWithdrawalAmount,
                 withdrawalController.withdrawMoney,
-                operationsMiddleware.validateWithdrawalResponse);
+                operationsMiddleware.validateWithdrawalResponseErrors);
+               // operationsMiddleware.validateResponseInventorySufficient);
 
 
         this.app
