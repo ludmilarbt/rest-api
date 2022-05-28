@@ -13,6 +13,7 @@ import debug from 'debug';
 import "reflect-metadata";
 import container from './common/config/container.di';
 import TYPES, { Warrior } from './common/config/test.di';
+import { IWithdrawalService, WithdrawalService } from './operations/services/withdrawal.service';
 
 
 const app: express.Application = express();
@@ -48,6 +49,9 @@ routes.push(new InventoryRoutes(app));
 
 let Warrior = container.get<Warrior>(TYPES.Warrior);
 console.log(Warrior.fight());
+
+let wServuce=container.get<IWithdrawalService>(TYPES.WithdrawalService);
+console.log('testDI' + wServuce.testDI);
 
 const runningMessage = `Server running at http://localhost:${port}`;
 app.get('/', (req: express.Request, res: express.Response) => {

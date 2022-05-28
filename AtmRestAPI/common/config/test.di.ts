@@ -1,4 +1,5 @@
 import { inject, injectable } from "inversify";
+import {WithdrawalService} from "../../operations/services/withdrawal.service";
 
 export interface Warrior {
     fight(): string;
@@ -16,7 +17,8 @@ export interface ThrowableWeapon {
 let TYPES = {
     Warrior: Symbol("Warrior"),
     Weapon: Symbol("Weapon"),
-    ThrowableWeapon: Symbol("ThrowableWeapon")
+    ThrowableWeapon: Symbol("ThrowableWeapon"),
+    WithdrawalService: Symbol("WithdrawalService")
 };
 
 export default TYPES;
