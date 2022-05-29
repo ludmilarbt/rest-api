@@ -10,15 +10,8 @@ const log: debug.IDebugger = debug('app:users-dao');
 
 class WithdrawalRepo {
 
-    
-    
-
-    constructor() {
-    }
-
     async getInventoryBalance() {
 
-        //db.inventories.aggregate([{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} }])
         let inventory = await inventoryRepo.getInventory(); //this.Inventory.aggregate([{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} },{ $sort: { "type": -1, "value": -1} }]).exec();
         
         console.log(JSON.stringify(inventory));

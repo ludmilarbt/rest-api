@@ -1,3 +1,4 @@
+//mock inventory
 export const inventoryBalance=[
     {
         "_id": "6289f0b6c521fb001b33f665",

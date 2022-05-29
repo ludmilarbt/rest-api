@@ -14,7 +14,6 @@ export class OperationsRoutes extends CommonRoutesConfig {
 
     configureRoutes(): express.Application {
 
-
         this.app
             .route(`/withdrawal`)
             .post(
@@ -24,7 +23,6 @@ export class OperationsRoutes extends CommonRoutesConfig {
                 operationsMiddleware.validateWithdrawalAmount,
                 withdrawalController.withdrawMoney,
                 operationsMiddleware.validateWithdrawalResponseErrors);
-               // operationsMiddleware.validateResponseInventorySufficient);
 
 
         this.app

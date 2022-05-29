@@ -1,26 +1,20 @@
-import express from 'express';
 import withdrawalRepo from '../repos/withdrawal.repo';
 import { AtmModel } from '../../common/model/atm.model';
-
-import { injectable, inject } from "inversify";
-import "reflect-metadata";
+import debug from 'debug';
 
 export interface IWithdrawalService {
-    testDI: number;
     withdrawMoney(amount: number): any;
 }
 
-@injectable()
-export class WithdrawalService implements IWithdrawalService{
+const log: debug.IDebugger = debug('app:withdrawal-service');
 
-    testDI: number = 10;
+
+export class WithdrawalService implements IWithdrawalService{
 
     async withdrawMoney(amount: number) {
         
         const atmModel=new AtmModel();
         atmModel.inventory = await withdrawalRepo.getInventoryBalance();
-
-        console.log(`inventory: ${atmModel.inventory}`);
 
         const withdrawal=atmModel.getWithdrowalModel();
         withdrawal.calculateCashReponse(amount);

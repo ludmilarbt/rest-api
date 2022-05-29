@@ -71,9 +71,6 @@ export class AtmWithdrawalModel extends AtmOperationModel {
             }
         });
 
-        
-        
-
         console.log(`remaining amount:${amount}`);
         return amount;
     }
@@ -91,7 +88,6 @@ export class AtmWithdrawalModel extends AtmOperationModel {
     validateResponseCoinsAmount() {
         let coinSum=0;
         this.coins.forEach((v)=> {
-            console.log(v);
             coinSum +=v;
         });
        
@@ -102,9 +98,7 @@ export class AtmWithdrawalModel extends AtmOperationModel {
 
     createAtmCashResponse() {
         let mapAsc = new Map([...this.bills].sort().reverse());
-        console.log(`mapAsc ${mapAsc}`);
         let billsJson=Object.fromEntries(mapAsc);
-        console.log(`billsJson ${JSON.stringify (billsJson)}`);
         let coinsJson= (Object.fromEntries(this.coins));
 
         let result= {};
@@ -120,8 +114,8 @@ export class AtmWithdrawalModel extends AtmOperationModel {
             }
         } else {
             result = {
-                "bills": [billsJson],
-                "coins": [coinsJson] 
+                "bills": [billsJson].reverse(),
+                "coins": [coinsJson] .reverse()
             }
         }
 

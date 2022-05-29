@@ -2,7 +2,7 @@ import { Account } from "./account";
 
 
 /*
-    In actual implementation we will need acaounts managing, currently it is out of the scope
+    In actual implementation we will need customers and acounts managing, currently it is out of the scope
 */
 export class AtmOperationModel{
     account: Account = new Account();

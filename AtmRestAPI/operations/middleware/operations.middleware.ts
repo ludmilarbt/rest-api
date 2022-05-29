@@ -41,7 +41,6 @@ class OperationsMiddleware {
         } else {
             res.status(200).send(withdrowalResponse);
         }
-            
     }
         
     }

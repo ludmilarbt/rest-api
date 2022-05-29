@@ -3,5 +3,4 @@ export class InventoryItem {
     amount: number=0;
     value: number=0;
     isEmpty?: boolean = false;
-    //sum: number =0;
 }

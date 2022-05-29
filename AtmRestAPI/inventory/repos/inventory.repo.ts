@@ -1,4 +1,3 @@
-import express from 'express';
 import mongooseService from '../../common/services/mongoose.service';
 import {InventoryItem} from '../../common/model/inventory.item';
 import debug from 'debug';
@@ -7,7 +6,6 @@ import debug from 'debug';
 const log: debug.IDebugger = debug('app:users-dao');
 
 class InventoryRepo {
-
     
     Schema = mongooseService.getMongoose().Schema;
 
@@ -17,28 +15,13 @@ class InventoryRepo {
         amount: Number,
     });
 
-    /*
-    const machineInventory = new this.Schema({
-        //id: {type: Number},
-        machineID: {
-           type: Number
-        },
-        items: {
-           type: Array<InventoryItem>
-        }
-     });
-*/
     Inventory = mongooseService.getMongoose().model('Inventory', this.inventorySchema);
-
-    
-
 
     constructor() {
     }
 
     async getInventory() {
 
-        //return this.createMockInventory();
         //{ $group: {_id: {field1: "$type", field2: "$value"}, amount: { $sum: "$amount" }}}, {$project:{_id:0, "type": "$_id.field1","value": "$_id.field2", "amount":"$amount"} },
         let inventory = this.Inventory 
         .aggregate([ {$sort: { "type": -1, "value": -1, "amount": 1} }])
@@ -73,13 +56,28 @@ class InventoryRepo {
         newItem.save();
     }
 
+    async resetInventory() {
+        this.Inventory.remove({});
+
+        const mockInventory=this.createMockInventory();
+
+        mockInventory.forEach(element => {
+            new this.Inventory({
+                type: element.type,
+                value: element.value,
+                amount:element.amount
+    
+            }).save();
+        });
+
+    }
 
     createMockInventory() {
         const inventoryBalanceExt=new Array<InventoryItem>();
 
         let newItem=new InventoryItem() 
         newItem.type= "Bill";
-        newItem.value= 2000;
+        newItem.value= 200;
         newItem.amount= 2;
         inventoryBalanceExt.push( newItem);
         newItem=new InventoryItem() 
@@ -105,9 +103,7 @@ class InventoryRepo {
         inventoryBalanceExt.push( newItem);
 
         return inventoryBalanceExt;
-
     }
-
 }
 
 export default new InventoryRepo()

@@ -10,9 +10,6 @@ class WithdrawalController {
         res.locals.result = response;
         next();
     }
-
-
-    
 }
 
 export default new WithdrawalController()

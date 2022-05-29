@@ -8,10 +8,12 @@ import {InventoryItem} from '../../common/model/inventory.item';
 class InventoryService {
     
     async resetInventory() {
-        throw new Error('Method not implemented.');
+        const inventoryBalance= await inventoryRepo.resetInventory();
+
+        return inventoryBalance;
     }
     async clean() {
-        
+
         const inventoryBalance= await inventoryRepo.cleanInventory();
 
         return inventoryBalance;

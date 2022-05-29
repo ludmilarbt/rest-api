@@ -25,6 +25,11 @@ export class InventoryRoutes extends CommonRoutesConfig {
                     inventoryController.pushInventoryItem);
 
         this.app
+            .route(`/inventory/reset`)
+            .post(
+                inventoryController.reset);
+
+        this.app
                 .route(`/inventory`)
                 .delete(
                     inventoryController.clean);
