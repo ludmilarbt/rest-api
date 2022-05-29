@@ -4,6 +4,12 @@ import inventoryService from '../services/inventory.service';
 
 class InventoryController {
 
+    async reset(req: express.Request, res: express.Response) {
+        const approval= await inventoryService.resetInventory();
+        
+        res.status(200).send(approval);
+    }
+
     async listInventoryItems(req: express.Request, res: express.Response) {
         const approval=await inventoryService.getInventory();
         
