@@ -33,11 +33,14 @@
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
     "express-winston": "^4.1.0",
+    "inversify": "5.0.1",
+    "inversify-binding-decorators": "4.0.0",
+    "inversify-express-utils": "6.3.2",
+    "reflect-metadata": "0.1.13",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.2.7",
     "shortid": "^2.2.16",
-    "winston": "^3.3.3",
-    "reflect-metadata": "0.1.13"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/argon2": "^0.15.0",

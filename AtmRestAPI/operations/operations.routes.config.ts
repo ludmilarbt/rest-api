@@ -28,8 +28,8 @@ export class OperationsRoutes extends CommonRoutesConfig {
 
 
         this.app
-        .route(`/test`)
-        .get((req:express.Request, res:express.Response, next: express.NextFunction) =>  res.status(200).send('response:Test passed'));
+        .route(`/health`)
+        .get((req:express.Request, res:express.Response, next: express.NextFunction) =>  res.status(200).send('health test passed'));
 
             return this.app;
     }
