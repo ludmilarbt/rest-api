@@ -1,8 +1,5 @@
 import express from 'express';
 import inventoryRepo from '../repos/inventory.repo';
-import {AtmWithdrawalModel} from '../../common/model/atm.withdrawal.model'
-import {inventoryBalance} from '../../inventory/dto/inventory.cassetes';
-import {InventoryItem} from '../../common/model/inventory.item';
 
 
 class InventoryService {
