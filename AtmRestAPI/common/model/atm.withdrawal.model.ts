@@ -97,9 +97,10 @@ export class AtmWithdrawalModel extends AtmOperationModel {
     }
 
     createAtmCashResponse() {
-        let mapAsc = new Map([...this.bills].sort().reverse());
-        let billsJson=Object.fromEntries(mapAsc);
-        let coinsJson= (Object.fromEntries(this.coins));
+        //for refactor: create typed dto object and preserve desc order
+
+        let billsJson = Object.fromEntries(this.bills);
+        let coinsJson = (Object.fromEntries(this.coins));
 
         let result= {};
 
@@ -114,8 +115,8 @@ export class AtmWithdrawalModel extends AtmOperationModel {
             }
         } else {
             result = {
-                "bills": [billsJson].reverse(),
-                "coins": [coinsJson] .reverse()
+                "bills": [billsJson],
+                "coins": [coinsJson]
             }
         }
 
