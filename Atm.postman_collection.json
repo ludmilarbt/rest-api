@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "e710f21e-b528-48e7-8fe0-8a5e73d82b91",
 		"name": "Atm",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5005020"
 	},
 	"item": [
 		{
@@ -90,6 +91,10 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":300\r\n}"
+				},
 				"url": {
 					"raw": "http://localhost:3000/atm/withdrawal",
 					"protocol": "http",
@@ -102,7 +107,7 @@
 						"withdrawal"
 					]
 				},
-				"description": "Withdrawal"
+				"description": "Withdrawal with amount"
 			},
 			"response": []
 		},
