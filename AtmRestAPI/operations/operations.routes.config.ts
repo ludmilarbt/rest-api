@@ -15,7 +15,7 @@ export class OperationsRoutes extends CommonRoutesConfig {
     configureRoutes(): express.Application {
 
         this.app
-            .route(`/withdrawal`)
+            .route(`/atm/withdrawal`)
             .post(
                 body('amount').exists().withMessage('Amount parameter is missing in request'),
                 body('amount').isDecimal().withMessage('Amount parameter should be decimal'),

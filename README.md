@@ -48,34 +48,34 @@ parallel requests
 - Admin routes may be implemented in this way:
 		
 	INVENTORY routes:
-        get `/inventory`
-        post `/inventory`
-        delete `/inventory`
-        get `/inventory/:machineId`
-        post `/inventory/:machineId`
-        post `/inventory/:machineId/state`
-        patch `/inventory/:machineId`
-        delete `/inventory/:machineId`
+        - get `/inventory`
+        - post `/inventory`
+        - delete `/inventory`
+        - get `/inventory/:machineId`
+        - post `/inventory/:machineId`
+        - post `/inventory/:machineId/state`
+        - patch `/inventory/:machineId`
+        - delete `/inventory/:machineId`
         
 
     USERS routes:
-        get `/users`
-        post `/users`
-        delete `/users`
-        users/auth/:userId
-        get `/users/:userId`
-        put `/users/:userId`
-        patch `/users/:userId`
-        delete `/users/:userId`
+        - get `/users`
+        - post `/users`
+        - delete `/users`
+        - users/auth/:userId
+        - get `/users/:userId`
+        - put `/users/:userId`
+        - patch `/users/:userId`
+        - delete `/users/:userId`
 		
 **Areas under investigation for best practices**:
-1. Uni tests
+1. Tests
 2. Debugging
 3. Logging
 4. Monitoring
 
 
-**Feather enhancements:**
+**Further enhancements:**
 1. Productization (add support for "off-the shell" product for varius kinds of ATM machines)
 2. Microserices redesign
 3. Implement Refill API
