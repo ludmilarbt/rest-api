@@ -8,6 +8,7 @@ import {OperationsRoutes} from './operations/operations.routes.config';
 import { InventoryRoutes } from './inventory/inventory.routes.config';
 
 import debug from 'debug';
+import inventoryService from './inventory/services/inventory.service';
 
 
 const app: express.Application = express();
@@ -45,6 +46,17 @@ const runningMessage = `Server running at http://localhost:${port}`;
 app.get('/', (req: express.Request, res: express.Response) => {
     res.status(200).send(runningMessage)
 });
+
+//Set initial inventory state
+inventoryService.resetInventory()
+.then(res=> {
+    console.log('Inventory reset');
+})
+.catch(reason =>{
+    console.log('Inventory reset error');
+})
+
+
 export default server.listen(port, () => {
     routes.forEach((route: CommonRoutesConfig) => {
         debugLog(`Routes configured for ${route.getName()}`);

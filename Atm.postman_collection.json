@@ -2,47 +2,11 @@
 	"info": {
 		"_postman_id": "e710f21e-b528-48e7-8fe0-8a5e73d82b91",
 		"name": "Atm",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "5005020"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:3000/inventory",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"amount\": 1500\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/inventory",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"inventory"
-					]
-				},
-				"description": "Cleans all inventory items"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/inventory",
+			"name": "http://localhost:3000/inventory/reset",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -54,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n     \"type\": \"Bill\", \"value\": 100, \"amount\": 2\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -62,87 +26,18 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/inventory",
+					"raw": "http://localhost:3000/inventory/reset",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"inventory"
+						"inventory",
+						"reset"
 					]
 				},
-				"description": "Add 200 Bills to inventory"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/inventory",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"type\": \"Bill\", \"value\": 50, \"amount\": 3\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/inventory",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"inventory"
-					]
-				},
-				"description": "Add 50 Biils to inventory"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/withdrawal",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"amount\": 100\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/withdrawal",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"withdrawal"
-					]
-				},
-				"description": "Withdraw from inventory: 100"
+				"description": "Reset Inventory - delete existing items and populates with mock items"
 			},
 			"response": []
 		},
@@ -181,6 +76,68 @@
 					]
 				},
 				"description": "Get current state of inventory"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/atm/withdrawal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/atm/withdrawal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"atm",
+						"withdrawal"
+					]
+				},
+				"description": "Withdrawal"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/inventory",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"amount\": 1500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/inventory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"inventory"
+					]
+				},
+				"description": "Cleans all inventory items"
 			},
 			"response": []
 		}

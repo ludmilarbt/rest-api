@@ -57,18 +57,20 @@ class InventoryRepo {
     }
 
     async resetInventory() {
-        this.Inventory.remove({});
-
         const mockInventory=this.createMockInventory();
 
-        mockInventory.forEach(element => {
-            new this.Inventory({
-                type: element.type,
-                value: element.value,
-                amount:element.amount
-    
-            }).save();
-        });
+        this.cleanInventory().then (res=> {
+            mockInventory.forEach(element => {
+                new this.Inventory({
+                    type: element.type,
+                    value: element.value,
+                    amount:element.amount
+        
+                }).save();
+            });
+        })
+
+        
 
     }
 
