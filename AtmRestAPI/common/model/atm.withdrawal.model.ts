@@ -97,6 +97,7 @@ export class AtmWithdrawalModel extends AtmOperationModel {
     }
 
     createAtmCashResponse() {
+        
         //for refactor: create typed dto object and preserve desc order
 
         let billsJson = Object.fromEntries(this.bills);
