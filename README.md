@@ -34,7 +34,7 @@ parallel requests
 **Run instructions:**
 - `npm start`
 - `npm run debug`
--  Postman can be used to run requests for the ATM service, seeAtm.postman_collection.json, exported from Postman,
+-  Postman can be used to run requests for the ATM service, see Atm.postman_collection.json, exported from Postman,
 	it contains all needed requests to test service functionality.
 	[See Postman export:] (https://github.com/ludmilarbt/rest-api/blob/main/Atm.postman_collection.json)
 
