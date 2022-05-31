@@ -2,9 +2,146 @@
 	"info": {
 		"_postman_id": "e710f21e-b528-48e7-8fe0-8a5e73d82b91",
 		"name": "Atm",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5005020"
 	},
 	"item": [
+		{
+			"name": "http://localhost/inventory/reset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/inventory/reset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"inventory",
+						"reset"
+					]
+				},
+				"description": "Inventory reset"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/inventory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"type\": \"Bill\", \"value\": 50, \"amount\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/inventory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"inventory"
+					]
+				},
+				"description": "Get Inventory items"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/atm/withdrawal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":300\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost/atm/withdrawal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"atm",
+						"withdrawal"
+					]
+				},
+				"description": "Withdrawal"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/inventory",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"amount\": 1500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/inventory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"inventory"
+					]
+				},
+				"description": "Delete Inventory items"
+			},
+			"response": []
+		},
 		{
 			"name": "http://localhost:3000/inventory/reset",
 			"request": {
@@ -90,6 +227,10 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":300\r\n}"
+				},
 				"url": {
 					"raw": "http://localhost:3000/atm/withdrawal",
 					"protocol": "http",
@@ -102,7 +243,7 @@
 						"withdrawal"
 					]
 				},
-				"description": "Withdrawal"
+				"description": "Withdrawal with amount"
 			},
 			"response": []
 		},
