@@ -30,6 +30,8 @@ parallel requests
 **Installation:**
 Docker compose loads both Node and Mongo containers
  - Run `docker-compose up -d` (docker-compose up -d --build if something was changed) to get a Node and MongoDB instances running.
+ - To stop and remove all containers, networks, and all images used by any service in docker-compose.yml run:
+ 	`docker-compose down --rmi all`
 
 **Local Run instructions:**
 -  `npm install` to install dependencies.
