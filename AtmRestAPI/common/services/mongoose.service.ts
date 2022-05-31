@@ -13,11 +13,22 @@ class MongooseService {
     };
 
     constructor() {
-        this.connectWithRetry();
+        this.connectMongoDocker();
+        //this.connectWithRetry();
     }
 
     getMongoose() {
         return mongoose;
+    }
+
+    connectMongoDocker = () => {
+        mongoose
+            .connect(
+                'mongodb://mongo:27017/docker-node-mongo',
+                { useNewUrlParser: true }
+            )
+            .then(() => console.log('MongoDB Connected'))
+            .catch(err => console.log(err));
     }
 
     connectWithRetry = () => {
