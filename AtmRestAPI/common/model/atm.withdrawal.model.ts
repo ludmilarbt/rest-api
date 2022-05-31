@@ -113,9 +113,24 @@ export class AtmWithdrawalModel extends AtmOperationModel {
                 "maxAvailableAmount": this.maxAvailableAmount
             }
         } else {
+            let bills:any=[];
+            Array.from(this.bills).forEach((item)=> {
+                let itemData:any ={};
+                itemData[item[0]]=item[1];
+                bills.push(itemData);
+            })
+
+            let coins:any=[];
+            Array.from(this.coins).forEach((item)=> {
+                let itemData:any ={};
+                itemData[item[0]]=item[1];
+                coins.push(itemData);
+            })
+
+
             result = {
-                "bills": [billsJson].reverse(),
-                "coins": [coinsJson] .reverse()
+                "bills": bills,
+                "coins": coins
             }
         }
 
