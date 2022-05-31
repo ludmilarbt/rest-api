@@ -38,6 +38,12 @@ parallel requests
 	it contains all needed requests to test service functionality.
 	[See Postman export:] (https://github.com/ludmilarbt/rest-api/blob/main/Atm.postman_collection.json)
 
+For example the following steps will be performed:
+1. POST http://localhost:3000/inventory/reset - is called on service start and can be repeated when state should be reset
+2. GET http://localhost:3000/inventory - is called to check inventory state
+3. POST http://localhost:3000/atm/withdrawal - to withdraw by passed {"amount: 300"}
+4. DEL http://localhost:3000/inventory - to delete all inventory items
+
 **ATM service API routes:**
 
 
@@ -68,7 +74,7 @@ parallel requests
         - patch `/users/:userId`
         - delete `/users/:userId`
 		
-**Areas under investigation for best practices**:
+**Areas under investigation for better practices**:
 1. Tests
 2. Debugging
 3. Logging
