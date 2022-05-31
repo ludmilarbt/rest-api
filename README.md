@@ -41,7 +41,7 @@ parallel requests
 For example the following steps will be performed:
 1. POST http://localhost:3000/inventory/reset - is called on service start and can be repeated when state should be reset
 2. GET http://localhost:3000/inventory - is called to check inventory state
-3. POST http://localhost:3000/atm/withdrawal - to withdraw by passed {"amount: 300"}
+3. POST http://localhost:3000/atm/withdrawal - to withdraw with parameter {"amount: 300"}
 4. DEL http://localhost:3000/inventory - to delete all inventory items
 
 **ATM service API routes:**
