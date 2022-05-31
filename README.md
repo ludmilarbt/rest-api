@@ -28,21 +28,24 @@ parallel requests
 2. Docker
 
 **Installation:**
-1. Run `npm install` to install dependencies.
-2. Run `docker-compose up -d` to get a MongoDB instance running.
+Docker compose loads both Node and Mongo containers
+ - Run `docker-compose up -d` (docker-compose up -d --build if something was changed) to get a Node and MongoDB instances running.
 
-**Run instructions:**
+**Local Run instructions:**
+-  `npm install` to install dependencies.
 - `npm start`
-- `npm run debug`
+- `npm run debug` for debug mode
+
+**Test:**
 -  Postman can be used to run requests for the ATM service, seeAtm.postman_collection.json, exported from Postman,
 	it contains all needed requests to test service functionality.
 	[See Postman export:] (https://github.com/ludmilarbt/rest-api/blob/main/Atm.postman_collection.json)
 
 For example the following steps will be performed:
-1. POST http://localhost:3000/inventory/reset - is called on service start and can be repeated when state should be reset
-2. GET http://localhost:3000/inventory - is called to check inventory state
-3. POST http://localhost:3000/atm/withdrawal - to withdraw with parameter {"amount: 300"}
-4. DEL http://localhost:3000/inventory - to delete all inventory items
+1. POST http://localhost/inventory/reset - is called on service start and can be repeated when state should be reset
+2. GET http://localhost/inventory - is called to check inventory state
+3. POST http://localhost/atm/withdrawal - to withdraw with parameter {"amount: 300"}
+4. DEL http://localhost/inventory - to delete all inventory items
 
 **ATM service API routes:**
 
