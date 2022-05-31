@@ -47,6 +47,8 @@ For example the following steps will be performed:
 3. POST http://localhost/atm/withdrawal - to withdraw with parameter {"amount: 300"}
 4. DEL http://localhost/inventory - to delete all inventory items
 
+To run these requests locally add port 3000
+
 **ATM service API routes:**
 
 
