@@ -13,8 +13,11 @@ class MongooseService {
     };
 
     constructor() {
-        this.connectMongoDocker();
-        //this.connectWithRetry();
+        if (!process.env.DEBUG) {
+            this.connectMongoDocker();
+        } else {
+            this.connectWithRetry();
+        }
     }
 
     getMongoose() {

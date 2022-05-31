@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node --unhandled-rejections=strict ./dist/app.js",
-    "debug": "SET DEBUG=* && npm start",
+    "debug": "EXPORT DEBUG=* && npm start",
     "test": "mocha -r ts-node/register 'test/**/*.test.ts' --unhandled-rejections=strict",
     "test-debug": "export DEBUG=* && npm test"
   },
@@ -29,6 +29,7 @@
   "dependencies": {
     "argon2": "^0.27.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "debug": "^4.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
