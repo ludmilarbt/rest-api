@@ -35,7 +35,6 @@ Docker compose loads both Node and Mongo containers
 
 **Local Run instructions:**
 -  `npm install` to install dependencies.
-- `npm start`
 - `npm run debug` for debug mode
 
 **Test:**

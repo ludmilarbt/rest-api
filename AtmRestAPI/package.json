@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node --unhandled-rejections=strict ./dist/app.js",
-    "debug": "EXPORT DEBUG=* && npm start",
+    "debug": "SET DEBUG=* && npm start",
     "test": "mocha -r ts-node/register 'test/**/*.test.ts' --unhandled-rejections=strict",
     "test-debug": "export DEBUG=* && npm test"
   },
